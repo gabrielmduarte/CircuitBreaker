@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: demo
+server:
+  port: 8080
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 6
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 30000
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        registerHealthIndicator: true
+    instances:
+      personCB:
+        baseConfig: default
